@@ -1,0 +1,540 @@
+{
+  "candidates": 1000,
+  "repeats": 3,
+  "units": "candidate streams/sec; each candidate checks every record; process wall time",
+  "baseline": "pre-worker executable",
+  "binary": "worker executable",
+  "measurements": [
+    {
+      "workload": "single_pmkid",
+      "mode": "mask",
+      "variant": "baseline",
+      "seconds": [
+        2.002060332975816,
+        1.5674820829881355,
+        1.4441677500144579
+      ],
+      "median_seconds": 1.5674820829881355,
+      "candidates_per_second": 637.9658248429046,
+      "speedup": 1.0
+    },
+    {
+      "workload": "single_pmkid",
+      "mode": "mask",
+      "variant": "workers_1",
+      "seconds": [
+        1.5561394999967888,
+        2.080623874964658,
+        1.3869453750085086
+      ],
+      "median_seconds": 1.5561394999967888,
+      "candidates_per_second": 642.6159094361807,
+      "speedup": 1.0072889242843397
+    },
+    {
+      "workload": "single_pmkid",
+      "mode": "mask",
+      "variant": "workers_2",
+      "seconds": [
+        0.7915310420212336,
+        0.8364901670138352,
+        0.8131955409771763
+      ],
+      "median_seconds": 0.8131955409771763,
+      "candidates_per_second": 1229.7165313995083,
+      "speedup": 1.9275586301230463
+    },
+    {
+      "workload": "single_pmkid",
+      "mode": "mask",
+      "variant": "workers_4",
+      "seconds": [
+        0.659221499983687,
+        0.5806939169997349,
+        0.6339278750238009
+      ],
+      "median_seconds": 0.6339278750238009,
+      "candidates_per_second": 1577.4665216645583,
+      "speedup": 2.472650509222811
+    },
+    {
+      "workload": "single_pmkid",
+      "mode": "mask",
+      "variant": "workers_8",
+      "seconds": [
+        0.8521961660007946,
+        0.6970414590323344,
+        0.5674684169935063
+      ],
+      "median_seconds": 0.6970414590323344,
+      "candidates_per_second": 1434.63489444121,
+      "speedup": 2.248764492666172
+    },
+    {
+      "workload": "single_pmkid",
+      "mode": "wordlist",
+      "variant": "baseline",
+      "seconds": [
+        1.3454263340099715,
+        2.1065640000160784,
+        1.5896217079716735
+      ],
+      "median_seconds": 1.5896217079716735,
+      "candidates_per_second": 629.0804881344887,
+      "speedup": 1.0
+    },
+    {
+      "workload": "single_pmkid",
+      "mode": "wordlist",
+      "variant": "workers_1",
+      "seconds": [
+        1.3683564999955706,
+        1.6343927920097485,
+        1.344722334004473
+      ],
+      "median_seconds": 1.3683564999955706,
+      "candidates_per_second": 730.8037050309894,
+      "speedup": 1.1617014337833884
+    },
+    {
+      "workload": "single_pmkid",
+      "mode": "wordlist",
+      "variant": "workers_2",
+      "seconds": [
+        1.010286292003002,
+        0.9386200000299141,
+        1.1001025409786962
+      ],
+      "median_seconds": 1.010286292003002,
+      "candidates_per_second": 989.8184385115151,
+      "speedup": 1.5734368768085294
+    },
+    {
+      "workload": "single_pmkid",
+      "mode": "wordlist",
+      "variant": "workers_4",
+      "seconds": [
+        0.9029139999765903,
+        0.6839821669855155,
+        0.657896000018809
+      ],
+      "median_seconds": 0.6839821669855155,
+      "candidates_per_second": 1462.0264215472985,
+      "speedup": 2.3240689373197303
+    },
+    {
+      "workload": "single_pmkid",
+      "mode": "wordlist",
+      "variant": "workers_8",
+      "seconds": [
+        0.5272500420105644,
+        1.1767938749981113,
+        0.5519179999828339
+      ],
+      "median_seconds": 0.5519179999828339,
+      "candidates_per_second": 1811.863356569459,
+      "speedup": 2.8801773234812327
+    },
+    {
+      "workload": "single_eapol",
+      "mode": "mask",
+      "variant": "baseline",
+      "seconds": [
+        1.3505657500354573,
+        1.6912921250332147,
+        1.6492818330298178
+      ],
+      "median_seconds": 1.6492818330298178,
+      "candidates_per_second": 606.324510446433,
+      "speedup": 1.0
+    },
+    {
+      "workload": "single_eapol",
+      "mode": "mask",
+      "variant": "workers_1",
+      "seconds": [
+        1.5421455840114504,
+        1.5647257920354605,
+        1.419146667001769
+      ],
+      "median_seconds": 1.5421455840114504,
+      "candidates_per_second": 648.4472091141915,
+      "speedup": 1.0694722016709233
+    },
+    {
+      "workload": "single_eapol",
+      "mode": "mask",
+      "variant": "workers_2",
+      "seconds": [
+        0.7413082919665612,
+        0.8176228340016678,
+        0.65717266703723
+      ],
+      "median_seconds": 0.7413082919665612,
+      "candidates_per_second": 1348.966429806383,
+      "speedup": 2.224825826046761
+    },
+    {
+      "workload": "single_eapol",
+      "mode": "mask",
+      "variant": "workers_4",
+      "seconds": [
+        0.5465142919565551,
+        0.6974145830026828,
+        0.3860965000349097
+      ],
+      "median_seconds": 0.5465142919565551,
+      "candidates_per_second": 1829.7783145248368,
+      "speedup": 3.0178201326177336
+    },
+    {
+      "workload": "single_eapol",
+      "mode": "mask",
+      "variant": "workers_8",
+      "seconds": [
+        0.5452208339702338,
+        0.549902500002645,
+        0.39806420798413455
+      ],
+      "median_seconds": 0.5452208339702338,
+      "candidates_per_second": 1834.1192003213046,
+      "speedup": 3.024979476701105
+    },
+    {
+      "workload": "single_eapol",
+      "mode": "wordlist",
+      "variant": "baseline",
+      "seconds": [
+        1.081902457983233,
+        1.4909590409952216,
+        1.193610374990385
+      ],
+      "median_seconds": 1.193610374990385,
+      "candidates_per_second": 837.7943263169569,
+      "speedup": 1.0
+    },
+    {
+      "workload": "single_eapol",
+      "mode": "wordlist",
+      "variant": "workers_1",
+      "seconds": [
+        1.194532125024125,
+        1.5156047499622218,
+        1.0828713330556639
+      ],
+      "median_seconds": 1.194532125024125,
+      "candidates_per_second": 837.14784981593,
+      "speedup": 0.9992283589411869
+    },
+    {
+      "workload": "single_eapol",
+      "mode": "wordlist",
+      "variant": "workers_2",
+      "seconds": [
+        0.8807171249645762,
+        0.7912670000223443,
+        0.6995359999709763
+      ],
+      "median_seconds": 0.7912670000223443,
+      "candidates_per_second": 1263.7959120900548,
+      "speedup": 1.508479912541126
+    },
+    {
+      "workload": "single_eapol",
+      "mode": "wordlist",
+      "variant": "workers_4",
+      "seconds": [
+        0.46376470796531066,
+        0.406534334004391,
+        0.3919619579683058
+      ],
+      "median_seconds": 0.406534334004391,
+      "candidates_per_second": 2459.816837977574,
+      "speedup": 2.9360628983860755
+    },
+    {
+      "workload": "single_eapol",
+      "mode": "wordlist",
+      "variant": "workers_8",
+      "seconds": [
+        0.4079706670017913,
+        0.3972467920393683,
+        0.4022899160045199
+      ],
+      "median_seconds": 0.4022899160045199,
+      "candidates_per_second": 2485.7694916438436,
+      "speedup": 2.9670402550606667
+    },
+    {
+      "workload": "same_ssid_mixed_4",
+      "mode": "mask",
+      "variant": "baseline",
+      "seconds": [
+        4.073049041966442,
+        4.68091491603991,
+        4.577584000013303
+      ],
+      "median_seconds": 4.577584000013303,
+      "candidates_per_second": 218.4558491984186,
+      "speedup": 1.0
+    },
+    {
+      "workload": "same_ssid_mixed_4",
+      "mode": "mask",
+      "variant": "workers_1",
+      "seconds": [
+        1.0271819999907166,
+        1.2928306250250898,
+        1.166630666994024
+      ],
+      "median_seconds": 1.166630666994024,
+      "candidates_per_second": 857.1693066980918,
+      "speedup": 3.923764503643681
+    },
+    {
+      "workload": "same_ssid_mixed_4",
+      "mode": "mask",
+      "variant": "workers_2",
+      "seconds": [
+        0.6038235410233028,
+        0.6683191669872031,
+        0.6015112079912797
+      ],
+      "median_seconds": 0.6038235410233028,
+      "candidates_per_second": 1656.1129735109282,
+      "speedup": 7.58099624975808
+    },
+    {
+      "workload": "same_ssid_mixed_4",
+      "mode": "mask",
+      "variant": "workers_4",
+      "seconds": [
+        0.41324779199203476,
+        0.40174599998863414,
+        0.45945179200498387
+      ],
+      "median_seconds": 0.41324779199203476,
+      "candidates_per_second": 2419.855639589902,
+      "speedup": 11.077092458128693
+    },
+    {
+      "workload": "same_ssid_mixed_4",
+      "mode": "mask",
+      "variant": "workers_8",
+      "seconds": [
+        0.41156104201218113,
+        0.4023583329981193,
+        0.38438741699792445
+      ],
+      "median_seconds": 0.4023583329981193,
+      "candidates_per_second": 2485.3468115066335,
+      "speedup": 11.376883798836843
+    },
+    {
+      "workload": "same_ssid_mixed_4",
+      "mode": "wordlist",
+      "variant": "baseline",
+      "seconds": [
+        4.159744790988043,
+        4.250223750015721,
+        4.073558165982831
+      ],
+      "median_seconds": 4.159744790988043,
+      "candidates_per_second": 240.3993634817378,
+      "speedup": 1.0
+    },
+    {
+      "workload": "same_ssid_mixed_4",
+      "mode": "wordlist",
+      "variant": "workers_1",
+      "seconds": [
+        1.0100187920033932,
+        1.1121987499645911,
+        0.9951205829856917
+      ],
+      "median_seconds": 1.0100187920033932,
+      "candidates_per_second": 990.0805885170506,
+      "speedup": 4.118482570742177
+    },
+    {
+      "workload": "same_ssid_mixed_4",
+      "mode": "wordlist",
+      "variant": "workers_2",
+      "seconds": [
+        0.5384197909734212,
+        0.5526370420120656,
+        0.5781219589989632
+      ],
+      "median_seconds": 0.5526370420120656,
+      "candidates_per_second": 1809.5059215704314,
+      "speedup": 7.52708283151462
+    },
+    {
+      "workload": "same_ssid_mixed_4",
+      "mode": "wordlist",
+      "variant": "workers_4",
+      "seconds": [
+        0.3698464169865474,
+        0.3471281250240281,
+        0.375387416977901
+      ],
+      "median_seconds": 0.3698464169865474,
+      "candidates_per_second": 2703.825031340978,
+      "speedup": 11.247222089863715
+    },
+    {
+      "workload": "same_ssid_mixed_4",
+      "mode": "wordlist",
+      "variant": "workers_8",
+      "seconds": [
+        0.38993033301085234,
+        0.3829432500060648,
+        0.3799233330064453
+      ],
+      "median_seconds": 0.3829432500060648,
+      "candidates_per_second": 2611.3529876402386,
+      "speedup": 10.862561987767545
+    },
+    {
+      "workload": "distinct_ssid_4",
+      "mode": "mask",
+      "variant": "baseline",
+      "seconds": [
+        3.9782182500348426,
+        4.385583541006781,
+        4.2478119999868795
+      ],
+      "median_seconds": 4.2478119999868795,
+      "candidates_per_second": 235.4153149911269,
+      "speedup": 1.0
+    },
+    {
+      "workload": "distinct_ssid_4",
+      "mode": "mask",
+      "variant": "workers_1",
+      "seconds": [
+        4.0800463749910705,
+        4.248252207995392,
+        3.95205399999395
+      ],
+      "median_seconds": 4.0800463749910705,
+      "candidates_per_second": 245.09525336024853,
+      "speedup": 1.0411185583634883
+    },
+    {
+      "workload": "distinct_ssid_4",
+      "mode": "mask",
+      "variant": "workers_2",
+      "seconds": [
+        2.248500666988548,
+        2.904500415956136,
+        2.149263958039228
+      ],
+      "median_seconds": 2.248500666988548,
+      "candidates_per_second": 444.7408064767513,
+      "speedup": 1.8891753346357867
+    },
+    {
+      "workload": "distinct_ssid_4",
+      "mode": "mask",
+      "variant": "workers_4",
+      "seconds": [
+        1.461953167046886,
+        1.925896541972179,
+        1.4093848330085166
+      ],
+      "median_seconds": 1.461953167046886,
+      "candidates_per_second": 684.0164394732142,
+      "speedup": 2.905573239782618
+    },
+    {
+      "workload": "distinct_ssid_4",
+      "mode": "mask",
+      "variant": "workers_8",
+      "seconds": [
+        2.0336935409577563,
+        1.5333295000018552,
+        1.4198173750191927
+      ],
+      "median_seconds": 1.5333295000018552,
+      "candidates_per_second": 652.175543481548,
+      "speedup": 2.770319099698884
+    },
+    {
+      "workload": "distinct_ssid_4",
+      "mode": "wordlist",
+      "variant": "baseline",
+      "seconds": [
+        4.139067125041038,
+        4.460323584033176,
+        4.009192582976539
+      ],
+      "median_seconds": 4.139067125041038,
+      "candidates_per_second": 241.60033403422642,
+      "speedup": 1.0
+    },
+    {
+      "workload": "distinct_ssid_4",
+      "mode": "wordlist",
+      "variant": "workers_1",
+      "seconds": [
+        4.109784291009419,
+        4.466950208006892,
+        4.312689666985534
+      ],
+      "median_seconds": 4.312689666985534,
+      "candidates_per_second": 231.87385998468466,
+      "speedup": 0.9597414710189768
+    },
+    {
+      "workload": "distinct_ssid_4",
+      "mode": "wordlist",
+      "variant": "workers_2",
+      "seconds": [
+        2.5212134580360726,
+        2.4159338329918683,
+        2.3544437919626944
+      ],
+      "median_seconds": 2.4159338329918683,
+      "candidates_per_second": 413.91862076024245,
+      "speedup": 1.7132369556310483
+    },
+    {
+      "workload": "distinct_ssid_4",
+      "mode": "wordlist",
+      "variant": "workers_4",
+      "seconds": [
+        2.2426717500202358,
+        1.71563791600056,
+        1.5309676250326447
+      ],
+      "median_seconds": 1.71563791600056,
+      "candidates_per_second": 582.8735717913999,
+      "speedup": 2.4125528390570303
+    },
+    {
+      "workload": "distinct_ssid_4",
+      "mode": "wordlist",
+      "variant": "workers_8",
+      "seconds": [
+        1.5476263749878854,
+        1.6724984160391614,
+        1.4778585000312887
+      ],
+      "median_seconds": 1.5476263749878854,
+      "candidates_per_second": 646.1507868834478,
+      "speedup": 2.6744614798086768
+    }
+  ],
+  "runner_platform": "macOS-26.6.2-x86_64-i386-64bit-Mach-O",
+  "hardware": "Apple M2, 8 physical/logical cores (4 performance + 4 efficiency)",
+  "execution_architecture": "Both measured executables are native arm64; the Python benchmark runner is x86_64.",
+  "build": "Release, -O3 -DNDEBUG, OpenSSL 3 libcrypto",
+  "date": "2026-11-04",
+  "preserved_baseline_copy": "output/casphash-before-workers",
+  "sha256": {
+    "baseline": "f59dbbd3a239417e0b5a15fa98b2c9e606d45d4c91fde14fc35369b649cc4348",
+    "workers": "f394b263a6884371987637d39309c9f9568780f304d590d085f2e7447e8c01dd"
+  },
+  "limitations": "Active desktop workload; 1000-candidate trials include startup; no sustained thermal or GPU benchmark."
+}

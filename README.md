@@ -1,20 +1,51 @@
-# kasphash
+# casphash
 
-C11 command-line PMKID verifier for locally supplied `WPA*01` records and
-password masks. Requires OpenSSL libcrypto, CMake 3.17+, and a POSIX system
+C11 command-line verifier for locally supplied `WPA*01` PMKID and `WPA*02`
+EAPOL handshake records and password masks. Requires OpenSSL 3.0+ libcrypto,
+CMake 3.17+, and a POSIX system
 (macOS or Linux).
 
 ```sh
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 cmake --build build
-./output/kasphash examples/demo.pmkid 'CaspDemo?d'
-python3 tests/test_cli.py ./output/kasphash
+./output/casphash examples/demo.pmkid 'CaspDemo?d'
+./output/casphash examples/demo.hc22000 'CaspDemo?d'
+python3 tests/test_cli.py ./output/casphash
+python3 -m unittest discover -s tests -p 'test_conversion.py' -v
+python3 -m unittest discover -s tests -p 'test_wordlist.py' -v
 ```
 
 Masks support literal characters and `?u` (uppercase), `?l` (lowercase),
 `?d` (digits), `?s` (symbols), `?c` (letters), and `?a` (letters, digits,
-symbols). Quote masks so the shell does not expand them. Candidate lengths
-are limited to 1–63 bytes; candidates are generated one at a time.
+symbols). Use `??` for a literal question mark. Quote masks so the shell does not
+expand them. Candidate lengths are limited to 1–63 bytes; candidates are
+generated in bounded batches of at most 128.
+
+## Wordlists and background use
+
+```sh
+./output/casphash examples/demo.hc22000 --wordlist ../wordlists/general-wordlist.txt
+hashcat --stdout -a 0 words.txt -r custom.rule | ./output/casphash examples/demo.hc22000 --wordlist -
+```
+
+Wordlists are read as byte strings, one candidate per line. LF/CRLF endings are
+removed; spaces are preserved. Empty, NUL-containing and >63-byte candidates are
+skipped and counted. Each candidate is tested against all unmatched records;
+stdin is consumed once, including for multi-record files. Malformed hash input
+fails before candidate testing. Searching stops early when all records match.
+
+Wordlist mode emits line-buffered `PROGRESS`, `MATCH` and `SUMMARY` records for
+background clients. MATCH includes the original hash-file line number and
+`password_hex`, preserving non-UTF-8 candidate bytes. The scanner's lower CaspHash
+panel decodes these results, supports wordlists, rule files, custom rule text and
+masks, and manages background processes and cancellation. Hashcat is used only
+to expand rules; CaspHash owns password verification.
+Progress includes monotonic search time in `seconds`. Mask progress includes
+`aggregate=1`, the shared candidate search size (`space`), record counts (`matched`
+and `total`), and a search-completion flag (`finished`). One mask candidate checks
+all unmatched records, so `tested` and `space` count candidates once, regardless
+of the number of records. The scanner understands both this protocol and older
+per-record mask progress.
 
 ## Layout
 
@@ -23,6 +54,48 @@ are limited to 1–63 bytes; candidates are generated one at a time.
 - `build/`: CMake build files.
 - `examples/`: synthetic input records.
 - `tests/`: offline integration checks.
+- `tools/convert_capture.py`: offline pcap/pcapng conversion using hcxtools.
+
+## Scanner captures
+
+Convert the saved capture before passing it to the verifier:
+
+```sh
+python3 tools/convert_capture.py ../caspscanner/captures/your-capture.pcapng -o output/capture.hc22000
+./output/casphash output/capture.hc22000 'CaspDemo?d'
+```
+
+Conversion requires `hcxpcapngtool` from hcxtools on PATH. It preserves the input,
+refuses to overwrite existing output, writes private hash files (0600), and fails
+explicitly if no usable records are extracted. Raw pcap/pcapng input to the C
+verifier is rejected with a conversion hint.
+
+A usable EAPOL message pair and the exact SSID are required; all four handshake
+messages are not required. The updated scanner keeps beacon/probe-response frames
+alongside EAPOL so conversion can obtain the SSID. Older EAPOL-only captures may
+lack that information. Empty captures cannot be recovered by conversion.
+
+## Supported EAPOL records
+
+Uses the [hc22000 text format](https://hashcat.net/forum/thread-10253-post-53276.html):
+`WPA*02*MIC*AP_MAC*CLIENT_MAC*SSID_HEX*OTHER_NONCE*EAPOL_HEX*MESSAGE_PAIR`.
+The separate nonce is normally ANonce; records containing an AP M3 instead
+carry SNonce there. Both nonce and MAC ordering are handled.
+
+- Descriptor version 1: HMAC-MD5 MIC (WPA).
+- Descriptor version 2: truncated HMAC-SHA1 MIC (WPA2).
+- Descriptor version 3: SHA256 PTK derivation and AES-128-CMAC MIC (WPA2 PSK-SHA256).
+
+Mixed PMKID/EAPOL files are accepted. EAPOL headers, lengths, hex fields,
+message-pair direction and nonce presence are validated before searching.
+The MIC field is zeroed for verification. Missing nonces and unsupported
+descriptor versions fail explicitly. Nonce-error correction, WPA3-SAE, FT,
+and enterprise authentication are not implemented. Records with nonce-correction
+flags are checked against their exact recorded nonces, with a warning.
+
+The EAPOL fixtures are generated independently in Python; CMAC fixture generation
+uses the `openssl` CLI (set `OPENSSL=/path/to/openssl` if needed). Conversion tests
+use a synthetic beacon/M1/M2 pcap; they skip when hcxtools is unavailable.
 
 ## Synthetic demo
 
@@ -38,12 +111,43 @@ are limited to 1–63 bytes; candidates are generated one at a time.
 
 The example command above searches ten candidates and prints
 `Match found with password: CaspDemo7`. No real network capture is needed.
+`examples/demo.hc22000` is an EAPOL example using the same SSID and password.
 
 Each record uses `WPA*01*PMKID*AP_MAC*CLIENT_MAC*SSID_HEX*` followed by any
 remaining fields. Hex fields are validated; SSIDs may contain embedded zero
 bytes. Unsupported or malformed records produce a nonzero exit status.
 A valid search with no match exits successfully and reports no password found.
+Empty files and files with no usable records return a nonzero exit status.
 
 The C port corrects the original PMKID message buffer overflow (the message
 is 20 bytes), checks OpenSSL failures, and avoids materializing the complete
-mask expansion in memory. It remains a single-threaded CPU implementation.
+mask expansion in memory. Verification uses a persistent POSIX CPU worker pool. By default it uses the
+online logical CPU count, capped at 32. Override with a trailing `--threads N`
+(1–32) in either search mode; `--threads 1` runs on the coordinator thread.
+No GPU backend is used.
+
+For each candidate, PBKDF2-HMAC-SHA1 derives one PMK per unique SSID (exact bytes
+and length), then reuses it for all unmatched PMKID/EAPOL records in that group.
+The required 4,096 iterations are unchanged. PMKs are local to a worker's current
+candidate; there is no persistent password/PMK cache.
+
+Workers verify batches of at most 128 candidates. The coordinator publishes
+matches in input order and only once per record. `tested` counts committed
+candidates; a final batch may speculatively verify later candidates that are
+not counted after an early match. A pipe with an incomplete batch is processed
+without waiting for more lines or EOF. Memory is bounded by the input records
+and one batch, independent of wordlist/mask search size. SIGTERM stops all worker
+threads with the verifier process, preserving scanner cancellation.
+
+```sh
+./output/casphash examples/demo.hc22000 'CaspDemo?d' --threads 4
+python3 -m unittest discover -s tests -p 'test_workers.py' -v
+# Preserve the old executable before rebuilding to reproduce the comparison.
+python3 tools/benchmark_workers.py --baseline /path/to/old/casphash --output results/workers-benchmark.json
+```
+
+The benchmark uses independent synthetic PMKID/EAPOL fixtures, single-record,
+four same-SSID, and four distinct-SSID workloads. It compares the old binary
+against 1/2/4/8 workers in mask and wordlist modes; results use median process
+wall time over three runs. See `results/workers-report.md` for measured results
+and validation limits.

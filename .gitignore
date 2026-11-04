@@ -4,3 +4,6 @@ build/
 output/*
 !output/.gitkeep
 bettercap-wifi-handshakes.pmkid
+.DS_Store
+__pycache__/
+*.py[cod]
