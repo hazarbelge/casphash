@@ -1,3 +1,6 @@
 .idea/
 cmake-build-debug/
+build/
+output/*
+!output/.gitkeep
 bettercap-wifi-handshakes.pmkid
