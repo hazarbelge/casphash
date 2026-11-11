@@ -7,3 +7,6 @@ bettercap-wifi-handshakes.pmkid
 .DS_Store
 __pycache__/
 *.py[cod]
+
+# Python tools are local-only.
+*.py

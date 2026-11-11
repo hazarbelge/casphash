@@ -593,7 +593,7 @@ int main(int argc, char **argv) {
     if (magic_len == 4 && (memcmp(magic, "\x0a\x0d\x0d\x0a", 4) == 0
         || memcmp(magic, "\xd4\xc3\xb2\xa1", 4) == 0 || memcmp(magic, "\xa1\xb2\xc3\xd4", 4) == 0
         || memcmp(magic, "\x4d\x3c\xb2\xa1", 4) == 0 || memcmp(magic, "\xa1\xb2\x3c\x4d", 4) == 0)) {
-        fprintf(stderr, "Packet capture input: convert to hc22000 first using tools/convert_capture.py.\n");
+        fprintf(stderr, "Packet capture input: convert to hc22000 first using hcxpcapngtool (hcxtools).\n");
         fclose(file);
         return EXIT_FAILURE;
     }
