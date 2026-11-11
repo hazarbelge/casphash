@@ -5,6 +5,10 @@ EAPOL handshake records and password masks. Requires OpenSSL 3.0+ libcrypto,
 CMake 3.17+, and a POSIX system
 (macOS or Linux).
 
+For password recovery and security auditing of networks you own or have explicit
+permission to assess. CaspHash tests candidate passwords against supplied records
+offline; it does not capture traffic or bypass authentication on a live network.
+
 ```sh
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 cmake --build build
@@ -65,6 +69,18 @@ tried literally; rules are applied only when expanded separately with Hashcat.
 Both lists are copied unchanged from the sibling project's `wordlists/`
 directory. Line counts include any duplicates or entries skipped by the
 verifier's input limits.
+
+`routers.txt` is derived from SecLists under its MIT license; the upstream
+notice is in `wordlists/licenses/seclists-LICENSE`. The local version removes
+`access key on label` and a duplicate `password` entry, and adds `rzadmin`.
+
+The complete source and redistribution terms of `general-wordlist.txt` remain
+unresolved. Its first block contains Probable-Wordlists' top-4,800 WPA entries
+with one inserted entry; that upstream dataset declares CC BY-SA 4.0. Its notice
+is retained in `wordlists/licenses/probable-wordlists-LICENSE`. This attribution
+does not establish permission for the rest of the combined file. See the pinned
+source URLs, checksums and verification details in `wordlists/sources.json`.
+Resolve those remaining terms or omit the general list from a public release.
 
 ## Turkish wordlist and presets
 
@@ -211,3 +227,11 @@ threads with the verifier process, preserving scanner cancellation.
 ```sh
 ./output/casphash examples/demo.hc22000 'CaspDemo?d' --threads 4
 ```
+
+## License
+
+Project code and original rule files are licensed under the [MIT License](LICENSE),
+copyright 2026 Hazar Belge. Bundled third-party wordlists retain their applicable
+upstream terms; they are not automatically relicensed by the project license.
+See `wordlists/sources.json` and `wordlists/licenses/` for attribution and notices.
+The combined general wordlist's licensing remains unresolved as described above.

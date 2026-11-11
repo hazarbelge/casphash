@@ -47,5 +47,32 @@
     "sha256": "646d126c57a95aa4d6dd866a705b97802983c370b408ecb2c6e365dcc356338d",
     "license": "MIT (as declared by upstream)",
     "retrieved": "2026-11-05"
+  },
+  {
+    "file": "routers.txt",
+    "sha256": "99c89be2ef44f5c7c2b96d8fa94bbed07f71e4f3a26b5c2cfb6a77316c7e21ff",
+    "url": "https://raw.githubusercontent.com/danielmiessler/SecLists/b68489393c7a9bc20f15947b63509a9cbeeb3f92/Passwords/Default-Credentials/Routers/0ALL-USERNAMES-AND-PASSWORDS.txt",
+    "upstream_sha256": "583bd88c6c57ab346091bf1e7f234a25e3d1e2c0184684a84c7dc2ebc400e353",
+    "license": "MIT (as declared by SecLists)",
+    "license_file": "licenses/seclists-LICENSE",
+    "retrieved": "2026-11-11",
+    "verification": "All 167 local lines match upstream order after removing access key on label, removing a duplicate password entry, and appending rzadmin."
+  },
+  {
+    "file": "general-wordlist.txt",
+    "sha256": "446c357447edebcd7832d44d77b4f49819c52c56087195e3caa08ee5646b3095",
+    "license": "Unresolved for the complete combined file; identified component is CC BY-SA 4.0",
+    "status": "partial-provenance-only",
+    "retrieved": "2026-11-11",
+    "identified_components": [
+      {
+        "url": "https://raw.githubusercontent.com/berzerk0/Probable-Wordlists/2df55facf06c7742f2038a8f6607ea9071596128/Real-Passwords/WPA-Length/Top4800-WPA-probable-v2.txt",
+        "upstream_sha256": "5dc33214cad9a11eb926de00f5ded20b1a5fc12ba3332319e054713265a35c51",
+        "license": "CC BY-SA 4.0",
+        "license_file": "licenses/probable-wordlists-LICENSE",
+        "verification": "Local lines 1-4801 reproduce all 4800 upstream lines in order, with one inserted entry at line 1391."
+      }
+    ],
+    "unresolved": "The origin and redistribution terms of the additional 102067 lines and the inserted entry are unverified. Further tracing was skipped at the maintainer request. The project MIT license does not relicense this combined file."
   }
 ]
