@@ -1,0 +1,51 @@
+[
+  {
+    "file": "dictionary.txt",
+    "url": "https://raw.githubusercontent.com/ahakanacar/turkish-dictionary-dataset-and-statistics/5ef471d903d48010cd15f4d3a0bb18a19ba95137/turkish_words_raw.txt",
+    "sha256": "915ebc026df5c572f230c2b491fe1c291d814216627b7d8a5f77f51f4d98030e",
+    "license": "MIT (as declared by upstream)",
+    "retrieved": "2026-11-05"
+  },
+  {
+    "file": "dictionary-LICENSE",
+    "url": "https://raw.githubusercontent.com/ahakanacar/turkish-dictionary-dataset-and-statistics/5ef471d903d48010cd15f4d3a0bb18a19ba95137/LICENSE",
+    "sha256": "d2e01d8c2cb4299d861ee674b29178988ebf99a7d1694834ef828ace81ecf7fc",
+    "license": "MIT (as declared by upstream)",
+    "retrieved": "2026-11-05"
+  },
+  {
+    "file": "geography.json",
+    "url": "https://raw.githubusercontent.com/talhaekrem/TurkiyeSehirVeIlcelerJSON/15f0bc4b7a457eaa3eaba972e4e5726e515a2636/Turkey%20Cities%20and%20Districts.json",
+    "sha256": "77a6904a0e5945bf9ac8ccdde2626ce806ec856b1b68719e0483d7021a40bbd1",
+    "license": "MIT (as declared by upstream)",
+    "retrieved": "2026-11-05"
+  },
+  {
+    "file": "geography-LICENSE",
+    "url": "https://raw.githubusercontent.com/talhaekrem/TurkiyeSehirVeIlcelerJSON/15f0bc4b7a457eaa3eaba972e4e5726e515a2636/LICENSE",
+    "sha256": "44ddd06a3c38a10ec92527778a5b283a8596f319c7db609a0598cdc2647f38ce",
+    "license": "MIT (as declared by upstream)",
+    "retrieved": "2026-11-05"
+  },
+  {
+    "file": "turkishnames.zip",
+    "url": "https://raw.githubusercontent.com/mkozturk/turkishnames/9c0a8de8dbcbcb47d1ced587b7d53522953a2b2b/turkishnames.zip",
+    "sha256": "7184f1d6ae5973d93c775e18c1c07707640599eed1e656c5c10273fa7aeb0d4c",
+    "license": "MIT (as declared by upstream)",
+    "retrieved": "2026-11-05"
+  },
+  {
+    "file": "turkishnames-LICENSE",
+    "url": "https://raw.githubusercontent.com/mkozturk/turkishnames/9c0a8de8dbcbcb47d1ced587b7d53522953a2b2b/LICENSE",
+    "sha256": "c5c83cb370b4ac3d2e39dec2945e3821fa164ae5c2cc0b7706168b5821251366",
+    "license": "MIT (as declared by upstream)",
+    "retrieved": "2026-11-05"
+  },
+  {
+    "file": "turkishnames-README.md",
+    "url": "https://raw.githubusercontent.com/mkozturk/turkishnames/9c0a8de8dbcbcb47d1ced587b7d53522953a2b2b/README.md",
+    "sha256": "646d126c57a95aa4d6dd866a705b97802983c370b408ecb2c6e365dcc356338d",
+    "license": "MIT (as declared by upstream)",
+    "retrieved": "2026-11-05"
+  }
+]
